@@ -10,7 +10,6 @@ namespace SocialApp.Domain.Entities
     {
         public SocialUser Blocker { get; private set; }
         public SocialUser Blocked { get; private set; }
-
         private BlockedUser(SocialUser blocker, SocialUser blocked)
         {
             Blocker = blocker;

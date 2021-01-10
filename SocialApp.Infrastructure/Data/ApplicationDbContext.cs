@@ -65,6 +65,7 @@ namespace SocialApp.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new SocialUserConfiguration());
+            builder.ApplyConfiguration(new BlockerUserConfiguration());
 
             base.OnModelCreating(builder);
         }

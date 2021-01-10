@@ -36,10 +36,10 @@ namespace SocialApp.Infrastructure.Data.Configurations
             builder.HasMany(x => x.SentFriendRequests).WithOne(x => x.Sender)
                 .OnDelete(DeleteBehavior.Cascade)
                 .Metadata.PrincipalToDependent.SetPropertyAccessMode(PropertyAccessMode.Field);
-
-            builder.HasMany(x => x.BlockedUsers).WithOne(x => x.Blocker)
+            
+            builder.HasMany(x => x.BlockedUsers).WithOne(x => x.Blocker).HasForeignKey(x => x.Id)
                 .OnDelete(DeleteBehavior.Cascade)
-                .Metadata.PrincipalToDependent.SetPropertyAccessMode(PropertyAccessMode.Field);                
+                .Metadata.PrincipalToDependent.SetPropertyAccessMode(PropertyAccessMode.Field);               
         }
     }
 }
