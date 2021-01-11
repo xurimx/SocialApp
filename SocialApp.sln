@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialApp.Domain", "SocialApp.Domain\SocialApp.Domain.csproj", "{5FDCF50F-6CD5-4F98-A8C6-6DD325C72949}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocailApp.Application", "SocailApp.Application\SocailApp.Application.csproj", "{542EE7CD-C428-42B1-9032-E41A4A3B1229}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocailApp.Application", "SocailApp.Application\SocailApp.Application.csproj", "{542EE7CD-C428-42B1-9032-E41A4A3B1229}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialApp.Infrastructure", "SocialApp.Infrastructure\SocialApp.Infrastructure.csproj", "{D3C3D5B3-2D14-4983-9173-2DC0C7EF0552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialApp.Infrastructure", "SocialApp.Infrastructure\SocialApp.Infrastructure.csproj", "{D3C3D5B3-2D14-4983-9173-2DC0C7EF0552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocailApp.Api", "SocailApp.Api\SocailApp.Api.csproj", "{673A6A99-77E8-44CB-A263-DC4B44E051BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{36E5EFAB-25D4-496A-ACFC-C04E3980BF5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,10 @@ Global
 		{D3C3D5B3-2D14-4983-9173-2DC0C7EF0552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3C3D5B3-2D14-4983-9173-2DC0C7EF0552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3C3D5B3-2D14-4983-9173-2DC0C7EF0552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{673A6A99-77E8-44CB-A263-DC4B44E051BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{673A6A99-77E8-44CB-A263-DC4B44E051BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{673A6A99-77E8-44CB-A263-DC4B44E051BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{673A6A99-77E8-44CB-A263-DC4B44E051BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

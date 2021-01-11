@@ -16,10 +16,12 @@ namespace SocialApp.Domain.Entities
 
         #region Constructors
 
-        private UserFriend(SocialUser user, SocialUser friend, bool isFavorite)
+        private UserFriend() { }
+
+        protected UserFriend(SocialUser userId, SocialUser friendId, bool isFavorite)
         {
-            User = user;
-            Friend = friend;
+            User = userId;
+            Friend = friendId;
             this.isFavorite = isFavorite;
         }
 

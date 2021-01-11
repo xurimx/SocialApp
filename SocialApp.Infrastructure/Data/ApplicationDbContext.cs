@@ -22,17 +22,25 @@ namespace SocialApp.Infrastructure.Data
         private readonly IDomainEventService eventService;
 
         public ApplicationDbContext(
-                        DbContextOptions<ApplicationDbContext> options, 
-                        ICurrentUserService currentUser, IDomainEventService eventService) 
+                        DbContextOptions<ApplicationDbContext> options,
+                        ICurrentUserService currentUser, IDomainEventService eventService)
                              : base(options)
         {
             this.currentUser = currentUser;
             this.eventService = eventService;
         }
 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+
+        {
+
+        }
+
         #region DbSets
 
-        public DbSet<SocialUser> SocialUsers { get; set ; }
+        public DbSet<SocialUser> SocialUsers { get; set; }
+        public DbSet<UserFriend> UserFriends { get; set; }
+
         public DbSet<FriendRequest> FriendRequests { get; set; }
         public DbSet<BlockedUser> BlockedUsers { get; set; }
 
@@ -64,8 +72,7 @@ namespace SocialApp.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new SocialUserConfiguration());
-            builder.ApplyConfiguration(new BlockerUserConfiguration());
+            builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(builder);
         }

@@ -28,7 +28,7 @@ namespace SocialApp.Infrastructure.Data
             //optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             optionsBuilder.UseSqlServer("Data Source=localhost; Initial Catalog=socialappdb; Integrated Security=true");
 
-            return new ApplicationDbContext(optionsBuilder.Options, null, null);
+            return new ApplicationDbContext(optionsBuilder.Options);
         }
     }
 }

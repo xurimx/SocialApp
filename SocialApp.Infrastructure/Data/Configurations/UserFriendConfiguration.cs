@@ -10,22 +10,22 @@ using System.Threading.Tasks;
 
 namespace SocialApp.Infrastructure.Data.Configurations
 {
-    public class BlockerUserConfiguration : IEntityTypeConfiguration<BlockedUser>
+    public class UserFriendConfiguration : IEntityTypeConfiguration<UserFriend>
     {
-        public void Configure(EntityTypeBuilder<BlockedUser> builder)
+        public void Configure(EntityTypeBuilder<UserFriend> builder)
         {
+            
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id);
+            builder.Property(x => x.isFavorite);
 
-            //builder.HasOne(x => x.Blocker)
-            //    .WithMany(x => x.BlockedUsers)
-            //    .HasForeignKey("BlockerId")
-            //    .OnDelete(DeleteBehavior.Cascade);
+            //builder.HasOne(x => x.User).WithMany(x => x.Friends)
+            //    .HasForeignKey("UserId")               
+            //    .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(x => x.Blocked)
+            builder.HasOne(x => x.Friend)
                 .WithMany()
-                .HasForeignKey("BlockedId");
-         
+                .HasForeignKey("FriendId");
         }
     }
 }

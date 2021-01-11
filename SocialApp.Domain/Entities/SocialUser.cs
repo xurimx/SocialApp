@@ -85,7 +85,7 @@ namespace SocialApp.Domain.Entities
             _friends.Add(UserFriend.Create(this, request.Receiver));
             _friends.Add(UserFriend.Create(request.Receiver, this));
 
-            DomainEvents.Add(new FriendRequestAcceptedEvent(request));            
+            DomainEvents.Add(new FriendRequestAcceptedEvent(request));
         }
 
         public void RejectFriendRequest(FriendRequest friendRequest)

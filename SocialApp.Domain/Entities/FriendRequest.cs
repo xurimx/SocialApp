@@ -17,6 +17,9 @@ namespace SocialApp.Domain.Entities
         public RequestStatus Status { get; set; }
         #endregion
 
+        #region Constructors
+        private FriendRequest() { }        
+
         protected FriendRequest(SocialUser sender, SocialUser receiver, RequestStatus status)
         {
             Sender = sender;
@@ -29,6 +32,7 @@ namespace SocialApp.Domain.Entities
         {
             Id = id;
         }
+        #endregion
 
         #region Factories
 

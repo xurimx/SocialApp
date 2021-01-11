@@ -39,7 +39,7 @@ namespace SocailApp.Application.User.Commands
 
             var friendRequest = await context.FriendRequests.FindAsync(request.FriendRequest);
 
-            user.AcceptFriendRequest(friendRequest);
+            //user.AcceptFriendRequest(friendRequest);
 
             await repository.Save(user);
             await context.SaveChangesAsync(cancellationToken);

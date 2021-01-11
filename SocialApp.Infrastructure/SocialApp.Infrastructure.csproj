@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SocailApp.Application\SocailApp.Application.csproj" />
+    <ProjectReference Include="..\SocialApp.Domain\SocialApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>
