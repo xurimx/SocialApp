@@ -25,28 +25,34 @@ namespace SocialApp.IntegrationTests
     {
         private readonly CustomWebApplicationFactory<Startup> _factory;
         private IServiceProvider provider;
-        private IServiceScopeFactory _scopeFactory => 
+        protected IServiceScopeFactory _scopeFactory => 
                 provider == null ? _factory.Services.GetRequiredService<IServiceScopeFactory>() 
                                  : provider.GetRequiredService<IServiceScopeFactory>();
+
+        protected Guid currentUserId;
 
         private static Checkpoint _checkpoint;
 
         public IntegrationTest(CustomWebApplicationFactory<Startup> factory)
         {
             _factory = factory;
-        }
 
-
-        public async Task RunAsDefaultUserAsync()
-        {
             EnsureCreated();
             _checkpoint = new Checkpoint
             {
                 TablesToIgnore = new[] { "__EFMigrationsHistory" }
             };
             ResetState();
-            
+        }
 
+
+        public async Task RunAsDefaultUserAsync()
+        {
+            if (currentUserId != Guid.Empty)
+            {
+                return;
+            }
+            
             using var scope = _scopeFactory.CreateScope();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
@@ -83,6 +89,7 @@ namespace SocialApp.IntegrationTests
             var context = newScope.ServiceProvider.GetRequiredService<SocialUserContext>();
             context.SocialUsers.Add(socialUser);
             await context.SaveChangesAsync();
+            currentUserId = Guid.Parse(id);
         }
 
 

@@ -18,8 +18,8 @@ namespace SocialApp.Api.Services
             this.httpContext = httpContext;
         }
 
-        public Guid SocialId => Guid.Parse(httpContext.HttpContext.User?.FindFirst("SocialId")?.Value);
+        public Guid SocialId => Guid.Parse(httpContext?.HttpContext?.User?.FindFirst("SocialId")?.Value);
 
-        public string IdentityId => httpContext.HttpContext.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        public string IdentityId => httpContext?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
     }
 }

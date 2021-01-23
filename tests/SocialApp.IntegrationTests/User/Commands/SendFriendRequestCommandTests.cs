@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using SocialApp.Application.Common.Responses;
 using SocialApp.Application.User.Commands;
 using Xunit;
+using FluentAssertions;
+using SocialApp.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace SocialApp.IntegrationTests.User.Commands
 {
@@ -26,9 +29,32 @@ namespace SocialApp.IntegrationTests.User.Commands
             var cmd = new SendFriendRequestCommand { UserId = friend.Id };
 
             var response = await SendAsync(cmd);
-           
-            Assert.True(response.Succeeded);
-            //ResetState();
+
+            using var scope = _scopeFactory.CreateScope();
+            var ctx = scope.ServiceProvider.GetRequiredService<SocialUserContext>();
+
+            ctx.SocialUsers.Attach(friend);
+            await ctx.Entry(friend)
+                .Collection(x => x.PendingFriendRequests)
+                .Query()
+                .Include(y => y.Sender)
+                .Include(y => y.Receiver)
+                .ToListAsync();
+
+            bool receivedRequest = friend.PendingFriendRequests.Any(x => x.Sender.Id == currentUserId);
+
+            receivedRequest.Should().BeTrue();
+            response.Succeeded.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task User_SendingRandomGuid_Fails()
+        {
+            await RunAsDefaultUserAsync();
+            var cmd = new SendFriendRequestCommand { UserId = Guid.NewGuid() };
+            var response = await SendAsync(cmd);
+
+            response.Succeeded.Should().BeFalse();
         }
     }
 }

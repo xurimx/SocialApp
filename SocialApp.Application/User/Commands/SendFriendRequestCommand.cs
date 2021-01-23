@@ -37,6 +37,10 @@ namespace SocialApp.Application.User.Commands
         {
             SocialUser socialUser = await repository.Find(currentUser.SocialId);
             SocialUser friend = await context.SocialUsers.FindAsync(request.UserId);
+            if (friend == null)
+            {
+                return Response<bool>.Fail("Friend Request Failed", "User does not exist");
+            }
 
             socialUser.SendFriendRequest(friend);
 

@@ -44,7 +44,8 @@ namespace SocialApp.Application.User.Commands
                 if (identityId.Succeeded)
                 {
                     SocialUser newUser = SocialUser
-                        .Create(Guid.Empty,
+                        .Create(//Guid.Empty,
+                                Guid.Parse(identityId.Data),
                                 Identity.Create(identityId.Data),
                                 Username.Create(request.Username),
                                 EmailAddress.Create(request.Email),
