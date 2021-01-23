@@ -9,7 +9,7 @@ using SocialApp.Infrastructure.Data;
 
 namespace SocialApp.Infrastructure.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(SocialUserContext))]
     [Migration("20210111164144_init_identity")]
     partial class init_identity
     {

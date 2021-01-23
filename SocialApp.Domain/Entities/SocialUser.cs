@@ -12,11 +12,12 @@ namespace SocialApp.Domain.Entities
 {
     public class SocialUser : BaseEntity, IAggregateRoot
     {
-        #region Domain Properties
-        public List<DomainEvent> DomainEvents { get; }
-        #endregion
+        /// <summary>
+        /// Domain Properties
+        /// </summary>
+        public List<DomainEvent> DomainEvents { get; } = new List<DomainEvent>();
 
-        #region Constructors
+        //Constructors
         protected SocialUser(Identity identityId, Username userName, EmailAddress email, Image image, DateTime lastLogin)
         {
             IdentityId = identityId;
@@ -33,9 +34,9 @@ namespace SocialApp.Domain.Entities
         }
 
 
-        #endregion
-
-        #region Properties
+        /// <summary>
+        /// Properties and backing fields
+        /// </summary>
         public Identity IdentityId { get; private set; }
         public Username UserName { get; private set; }
         public EmailAddress Email { get; private set; }
@@ -53,10 +54,17 @@ namespace SocialApp.Domain.Entities
         public virtual IReadOnlyList<FriendRequest> PendingFriendRequests => _pendingFriendRequests;
         public virtual IReadOnlyList<FriendRequest> SentFriendRequests => _sentFriendRequests;
         public virtual IReadOnlyList<BlockedUser> BlockedUsers => _blockedUsers;
-        #endregion
 
-        #region Factories
-
+        /// <summary>
+        /// Social User Factory
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="identityId"></param>
+        /// <param name="userName"></param>
+        /// <param name="email"></param>
+        /// <param name="image"></param>
+        /// <param name="lastLogin"></param>
+        /// <returns></returns>
         public static SocialUser Create(Guid id, Identity identityId, Username userName, EmailAddress email, Image image, DateTime lastLogin)
         {
             SocialUser socialUser = new SocialUser(id, identityId, userName, email, image, lastLogin);
@@ -66,13 +74,13 @@ namespace SocialApp.Domain.Entities
             return socialUser;
         }
 
-        #endregion
 
-        #region Methods 
 
+        //Methods
         public void SendFriendRequest(SocialUser friend)
         {
             FriendRequest request = FriendRequest.Create(this, friend);
+            
             _sentFriendRequests.Add(request);
             DomainEvents.Add(new NewFriendRequestEvent(request));
         }
@@ -128,6 +136,5 @@ namespace SocialApp.Domain.Entities
         {
             DomainEvents.Clear();
         }
-        #endregion
     }
 }

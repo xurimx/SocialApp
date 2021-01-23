@@ -14,14 +14,11 @@ namespace SocialApp.Domain.Common.ValueObjects
             NewMessages = newMessages;
         }
 
-        #region Properties
         public bool Replies { get; private set; }
         public bool FriendRequests { get; private set; } 
         public bool Reactions { get; private set; } 
         public bool NewMessages { get; private set; }
-        #endregion
 
-        #region Methods
         public void Update(bool replies, bool friendRequests, bool reactions, bool newMessages)
         {
             Replies = replies;
@@ -38,15 +35,9 @@ namespace SocialApp.Domain.Common.ValueObjects
             yield return NewMessages;
         }
 
-        #endregion
-
-        #region Factories
-
         public NotificationSettings Create(bool replies, bool friendRequests, bool reactions, bool newMessages)
         {
             return new NotificationSettings(replies, friendRequests, reactions, newMessages);
         }
-
-        #endregion
     }
 }

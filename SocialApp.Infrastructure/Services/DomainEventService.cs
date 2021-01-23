@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using SocailApp.Application.Common.Interfaces;
-using SocailApp.Application.Common.Models;
+using SocialApp.Application.Common.Interfaces;
+using SocialApp.Application.Common.Models;
 using SocialApp.Domain.Common;
 using System;
 using System.Collections.Generic;

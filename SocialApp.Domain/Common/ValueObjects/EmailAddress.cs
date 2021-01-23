@@ -9,18 +9,13 @@ namespace SocialApp.Domain.Common.ValueObjects
 {
     public class EmailAddress : ValueObject
     {
-        #region Properties
         public string Value { get; private set; }
-        #endregion
 
-        #region Constructors
         private EmailAddress(string value)
         {
             Value = value;
         }
-        #endregion
 
-        #region Factories
         public static EmailAddress Create(string email)
         {
             Regex regex = new Regex(@"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)");
@@ -30,9 +25,6 @@ namespace SocialApp.Domain.Common.ValueObjects
             }
             throw new ArgumentException($"The provided input: '{email}' is not a correct email!");
         }
-        #endregion
-
-        #region Methods
 
         public void SetEmail(string email)
         {
@@ -48,7 +40,5 @@ namespace SocialApp.Domain.Common.ValueObjects
         {
             yield return Value;
         }
-
-        #endregion
     }
 }

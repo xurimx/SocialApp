@@ -11,13 +11,10 @@ namespace SocialApp.Domain.Entities
 {
     public class FriendRequest : BaseEntity, IDomainEntity
     {
-        #region Properties
         public SocialUser Sender { get; set; }
         public SocialUser Receiver { get; set; }
         public RequestStatus Status { get; set; }
-        #endregion
 
-        #region Constructors
         private FriendRequest() { }        
 
         protected FriendRequest(SocialUser sender, SocialUser receiver, RequestStatus status)
@@ -32,19 +29,12 @@ namespace SocialApp.Domain.Entities
         {
             Id = id;
         }
-        #endregion
 
-        #region Factories
 
         public static FriendRequest Create(SocialUser sender, SocialUser friend)
         {
-            return new FriendRequest(Guid.NewGuid(), sender, friend, RequestStatus.Pending);
+            return new FriendRequest(Guid.Empty, sender, friend, RequestStatus.Pending);
         }
-
-        #endregion
-
-
-        #region Methods
 
         public void Accept()
         {
@@ -55,7 +45,5 @@ namespace SocialApp.Domain.Entities
         {
             Status = RequestStatus.Rejected;
         }
-
-        #endregion
     }
 }

@@ -2,9 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using SocailApp.Application.Common.Interfaces;
+using SocialApp.Application.Common.Interfaces;
+using SocialApp.Application.Common.Interfaces.Repositories;
 using SocialApp.Infrastructure.Data;
 using SocialApp.Infrastructure.Identity;
+using SocialApp.Infrastructure.Repositories;
 using SocialApp.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
@@ -18,19 +20,21 @@ namespace SocialApp.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<SocialUserContext>(options =>
             {
                 //options.UseInMemoryDatabase("dev");
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-                options.UseLazyLoadingProxies();
+                //options.UseLazyLoadingProxies();
             });
 
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddScoped<ISocialUserContext>(provider => provider.GetService<SocialUserContext>());
+            services.AddScoped<ISocialUserRepository, SocialUserRepository>();
+            services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddScoped<IDomainEventService, DomainEventService>();
 
             services.AddIdentityCore<ApplicationUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<SocialUserContext>();
 
             services.AddAuthentication()
                 .AddJwtBearer(config =>

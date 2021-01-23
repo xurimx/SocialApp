@@ -11,6 +11,9 @@ namespace SocialApp.Domain.Entities
         public SocialUser Blocker { get; private set; }
         public SocialUser Blocked { get; private set; }
 
+        /// <summary>
+        /// Default constructor for Entity Framework
+        /// </summary>
         private BlockedUser() { }
 
         private BlockedUser(SocialUser blocker, SocialUser blocked)

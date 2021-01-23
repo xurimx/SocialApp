@@ -8,13 +8,10 @@ namespace SocialApp.Domain.Entities
 {
     public class UserFriend : BaseEntity, IDomainEntity
     {
-        #region Properties
         public SocialUser User { get; }
         public SocialUser Friend { get; }
         public bool isFavorite { get; private set; }
-        #endregion
 
-        #region Constructors
 
         private UserFriend() { }
 
@@ -31,18 +28,14 @@ namespace SocialApp.Domain.Entities
             Id = id;
         }
 
-        #endregion
 
-        #region Factories
         
         public static UserFriend Create(SocialUser user, SocialUser friend)
         {
             return new UserFriend(Guid.NewGuid(), user, friend, false);
         }
 
-        #endregion
 
-        #region Methods
         public void MakeFavorite()
         {
             isFavorite = true;
@@ -52,6 +45,5 @@ namespace SocialApp.Domain.Entities
         {
             isFavorite = false;
         }
-        #endregion
     }
 }

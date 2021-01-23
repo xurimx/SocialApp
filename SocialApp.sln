@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialApp.Domain", "SocialApp.Domain\SocialApp.Domain.csproj", "{5FDCF50F-6CD5-4F98-A8C6-6DD325C72949}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocailApp.Application", "SocailApp.Application\SocailApp.Application.csproj", "{542EE7CD-C428-42B1-9032-E41A4A3B1229}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialApp.Application", "SocialApp.Application\SocialApp.Application.csproj", "{542EE7CD-C428-42B1-9032-E41A4A3B1229}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialApp.Infrastructure", "SocialApp.Infrastructure\SocialApp.Infrastructure.csproj", "{D3C3D5B3-2D14-4983-9173-2DC0C7EF0552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocailApp.Api", "SocailApp.Api\SocailApp.Api.csproj", "{673A6A99-77E8-44CB-A263-DC4B44E051BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialApp.Api", "SocialApp.Api\SocialApp.Api.csproj", "{673A6A99-77E8-44CB-A263-DC4B44E051BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{36E5EFAB-25D4-496A-ACFC-C04E3980BF5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialApp.IntegrationTests", "tests\SocialApp.IntegrationTests\SocialApp.IntegrationTests.csproj", "{93A232EA-1192-4651-B09E-CEF095C668D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,9 +37,16 @@ Global
 		{673A6A99-77E8-44CB-A263-DC4B44E051BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{673A6A99-77E8-44CB-A263-DC4B44E051BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{673A6A99-77E8-44CB-A263-DC4B44E051BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93A232EA-1192-4651-B09E-CEF095C668D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93A232EA-1192-4651-B09E-CEF095C668D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93A232EA-1192-4651-B09E-CEF095C668D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93A232EA-1192-4651-B09E-CEF095C668D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{93A232EA-1192-4651-B09E-CEF095C668D6} = {36E5EFAB-25D4-496A-ACFC-C04E3980BF5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {590E55B5-0E28-4490-A22C-5E908E89ECEA}
