@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace SocialApp.IntegrationTests.User.Commands
 {
     public class CreateSocialUserCommandTests : IntegrationTest
     {
-        public CreateSocialUserCommandTests(CustomWebApplicationFactory<Startup> factory) : base(factory) {}
+        public CreateSocialUserCommandTests(CustomWebApplicationFactory<Startup> factory, ITestOutputHelper outputHelper) : base(factory, outputHelper) {}
 
         [Fact]
         public async Task Creating_WithValidInput_Succeeds()

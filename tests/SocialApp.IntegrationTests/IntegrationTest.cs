@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SocialApp.Application.Common.Interfaces;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace SocialApp.IntegrationTests
 {
@@ -33,9 +34,9 @@ namespace SocialApp.IntegrationTests
 
         private static Checkpoint _checkpoint;
 
-        public IntegrationTest(CustomWebApplicationFactory<Startup> factory)
+        public IntegrationTest(CustomWebApplicationFactory<Startup> factory, ITestOutputHelper testOutput)
         {
-            _factory = factory;
+            _factory = factory.SetOutPut(testOutput);
 
             EnsureCreated();
             _checkpoint = new Checkpoint
@@ -47,12 +48,7 @@ namespace SocialApp.IntegrationTests
 
 
         public async Task RunAsDefaultUserAsync()
-        {
-            if (currentUserId != Guid.Empty)
-            {
-                return;
-            }
-            
+        {   
             using var scope = _scopeFactory.CreateScope();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 

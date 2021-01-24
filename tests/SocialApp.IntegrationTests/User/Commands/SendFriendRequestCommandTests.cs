@@ -13,12 +13,13 @@ using Xunit;
 using FluentAssertions;
 using SocialApp.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Xunit.Abstractions;
 
 namespace SocialApp.IntegrationTests.User.Commands
 {
     public class SendFriendRequestCommandTests : IntegrationTest
     {
-        public SendFriendRequestCommandTests(CustomWebApplicationFactory<Startup> factory) : base(factory) {}
+        public SendFriendRequestCommandTests(CustomWebApplicationFactory<Startup> factory, ITestOutputHelper outputHelper) : base(factory, outputHelper) {}
 
         [Fact]
         public async Task User_SendingFriendRequest_Succeeds()
@@ -45,6 +46,7 @@ namespace SocialApp.IntegrationTests.User.Commands
 
             receivedRequest.Should().BeTrue();
             response.Succeeded.Should().BeTrue();
+            ResetState();
         }
 
         [Fact]
@@ -55,6 +57,7 @@ namespace SocialApp.IntegrationTests.User.Commands
             var response = await SendAsync(cmd);
 
             response.Succeeded.Should().BeFalse();
+            ResetState();
         }
     }
 }
