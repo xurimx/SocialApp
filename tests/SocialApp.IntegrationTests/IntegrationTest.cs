@@ -22,16 +22,12 @@ using Xunit.Abstractions;
 
 namespace SocialApp.IntegrationTests
 {
-    public class IntegrationTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public abstract class IntegrationTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-        private readonly CustomWebApplicationFactory<Startup> _factory;
-        private IServiceProvider provider;
-        protected IServiceScopeFactory _scopeFactory => 
-                provider == null ? _factory.Services.GetRequiredService<IServiceScopeFactory>() 
-                                 : provider.GetRequiredService<IServiceScopeFactory>();
+        private WebApplicationFactory<Startup> _factory;
+        protected IServiceScopeFactory _scopeFactory => _factory.Services.GetRequiredService<IServiceScopeFactory>();
 
-        protected Guid currentUserId;
-
+        protected Guid currentUserId = Guid.Empty;
         private static Checkpoint _checkpoint;
 
         public IntegrationTest(CustomWebApplicationFactory<Startup> factory, ITestOutputHelper testOutput)
@@ -48,7 +44,11 @@ namespace SocialApp.IntegrationTests
 
 
         public async Task RunAsDefaultUserAsync()
-        {   
+        {
+            if (currentUserId != Guid.Empty)
+            {
+                return;
+            }
             using var scope = _scopeFactory.CreateScope();
             var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
@@ -69,7 +69,7 @@ namespace SocialApp.IntegrationTests
                                                 DateTime.Now);
 
 
-            var newFactory = _factory.WithWebHostBuilder(builder =>
+            _factory = _factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureTestServices(services =>
                 {
@@ -79,9 +79,7 @@ namespace SocialApp.IntegrationTests
                 });
             });
 
-            provider = newFactory.Services;
-
-            var newScope = _scopeFactory.CreateScope();
+            using var newScope = _scopeFactory.CreateScope();
             var context = newScope.ServiceProvider.GetRequiredService<SocialUserContext>();
             context.SocialUsers.Add(socialUser);
             await context.SaveChangesAsync();

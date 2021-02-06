@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace SocialApp.Infrastructure.Data
 {
-    public class SocialUserContext : IdentityDbContext<ApplicationUser>, ISocialUserContext
+    public class SocialUserContext : DbContext, ISocialUserContext
     {
         private readonly ICurrentUserService currentUser;
         private readonly IDomainEventService eventService;

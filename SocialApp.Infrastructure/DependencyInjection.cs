@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -36,17 +38,12 @@ namespace SocialApp.Infrastructure
             services.AddIdentityCore<ApplicationUser>()
                 .AddEntityFrameworkStores<SocialUserContext>();
 
-            services.AddAuthentication()
-                .AddJwtBearer(config =>
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
                 {
-                    config.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        ValidIssuer = configuration["Tokens:Issuer"],
-                        ValidAudience = configuration["Tokens:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Tokens:Key"])),
-                        ValidateLifetime = true,
-                        ClockSkew = TimeSpan.Zero
-                    };
+                    options.Authority = "socialidentity";
+                    options.ApiName = "SocialApi";
+                    options.RequireHttpsMetadata = false;
                 });
 
             return services;

@@ -1,0 +1,27 @@
+﻿@model RegisterViewModel
+
+<span>For testing only</span>
+<br />
+
+<form asp-controller="Account" asp-action="Register" method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div>
+        <label>username</label>
+        <input asp-for="Username" />
+        <span asp-validation-for="Username"></span>
+    </div>
+
+    <div>
+        <label>email</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+
+    <div>
+        <label>password</label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <button type="submit">Register</button>
+
+</form>

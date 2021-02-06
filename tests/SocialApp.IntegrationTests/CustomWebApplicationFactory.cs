@@ -24,7 +24,6 @@ namespace SocialApp.IntegrationTests
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-
             builder.ConfigureLogging(loggingBuilder =>
             {
                 loggingBuilder.ClearProviders();

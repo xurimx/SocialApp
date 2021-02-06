@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialApp.Api", "SocialApp.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{36E5EFAB-25D4-496A-ACFC-C04E3980BF5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialApp.IntegrationTests", "tests\SocialApp.IntegrationTests\SocialApp.IntegrationTests.csproj", "{93A232EA-1192-4651-B09E-CEF095C668D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialApp.IntegrationTests", "tests\SocialApp.IntegrationTests\SocialApp.IntegrationTests.csproj", "{93A232EA-1192-4651-B09E-CEF095C668D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialApp.Identity", "SocialApp.Identity\SocialApp.Identity.csproj", "{F6A769F1-D3D4-4AC4-8732-04E47AAF4448}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{4B3BCF89-364B-48EF-90B2-F2256FBF1211}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +45,17 @@ Global
 		{93A232EA-1192-4651-B09E-CEF095C668D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93A232EA-1192-4651-B09E-CEF095C668D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93A232EA-1192-4651-B09E-CEF095C668D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A769F1-D3D4-4AC4-8732-04E47AAF4448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A769F1-D3D4-4AC4-8732-04E47AAF4448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A769F1-D3D4-4AC4-8732-04E47AAF4448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A769F1-D3D4-4AC4-8732-04E47AAF4448}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{93A232EA-1192-4651-B09E-CEF095C668D6} = {36E5EFAB-25D4-496A-ACFC-C04E3980BF5D}
+		{F6A769F1-D3D4-4AC4-8732-04E47AAF4448} = {4B3BCF89-364B-48EF-90B2-F2256FBF1211}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {590E55B5-0E28-4490-A22C-5E908E89ECEA}

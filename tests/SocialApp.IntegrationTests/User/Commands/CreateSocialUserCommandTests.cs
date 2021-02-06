@@ -19,6 +19,7 @@ namespace SocialApp.IntegrationTests.User.Commands
         [Fact]
         public async Task Creating_WithValidInput_Succeeds()
         {
+            
             var cmd = new CreateSocialUserCommand
             {
                 Email = "testuser@social.app",

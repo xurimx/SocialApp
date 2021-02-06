@@ -42,6 +42,7 @@ namespace SocialApp.IntegrationTests.User.Commands
                 .Include(y => y.Receiver)
                 .ToListAsync();
 
+
             bool receivedRequest = friend.PendingFriendRequests.Any(x => x.Sender.Id == currentUserId);
 
             receivedRequest.Should().BeTrue();

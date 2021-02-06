@@ -1,0 +1,35 @@
+﻿@model LoginViewModel
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Social App Indetity Service Login</title>
+</head>
+<body>
+    <section class="section section-login">
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <h1>LOGIN</h1>
+            <div class="login-form">
+                <label for="username">Email</label>
+                <input asp-for="Username" class="form-control">
+
+                <label for="password">Password</label>
+                <input asp-for="Password" class="form-control">
+                <button type="submit">Sign In</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="section section-footer">
+        <p>© 2021 Social App.</p>
+    </section>
+
+    <style>
+        body {
+            text-align: center;
+            background-color: #F0F0F0;
+        }
+
+    </style>
+</body>
+</html>
